@@ -10,27 +10,14 @@ public class SaveProgress : MonoBehaviour {
     public GameObject unpauseButton;
 
     public MainSnakeMove snake; 
-	// Use this for initialization
+
 	void Start () {
 	    snake = GameObject.FindGameObjectWithTag("MainSnake").GetComponent<MainSnakeMove>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //snake = GameObject.FindGameObjectWithTag("MainSnake").GetComponent<MainSnakeMove>();
-        //if (Input.GetKeyDown(KeyCode.F9))
-        //{
-        //    //OnOffGame();
-        //    gameIsPaused = !gameIsPaused;
-        //    OnApplicationPause(gameIsPaused);
-        //}
-        //Debug.Log("game is paused: " + gameIsPaused);
-    }
-
-
 
     public void SaveOnClick()
     {
+        print("hui");
         StringBuilder str = new StringBuilder();
         foreach (GameObject n in snake.body)
         {
@@ -41,7 +28,8 @@ public class SaveProgress : MonoBehaviour {
         str.Append("direction: " + Direction());
         PlayerPrefs.SetString("allData", str.ToString());
         PlayerPrefs.SetInt("points", MainSnakeMove.point);
-        print("Application quit");
+        //PlayerPrefs.("IsnewGame", LoadScene.isNewGame);
+        //print("Application quit");
         PlayerPrefs.Save();
     }
 

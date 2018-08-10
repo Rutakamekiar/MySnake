@@ -88,7 +88,7 @@ public class MainSnakeMove : MonoBehaviour {
         str.Append("food: " + foodCoord.x + " " + foodCoord.y + " " + foodCoord.z + "\r\n");
         str.Append("direction: " + Direction());
         PlayerPrefs.SetString("allData", str.ToString());
-        PlayerPrefs.SetInt("points", MainSnakeMove.point);
+        PlayerPrefs.SetInt("points", point);
         print("Application quit");
         PlayerPrefs.Save();
     }
@@ -114,9 +114,7 @@ public class MainSnakeMove : MonoBehaviour {
         }
 
     }
-
-
-    Vector3 MoveHead(Vector3 var)
+    private Vector3 MoveHead(Vector3 var)
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -240,7 +238,6 @@ public class MainSnakeMove : MonoBehaviour {
         }
         if ((other.gameObject.CompareTag("Tail")) || (other.gameObject.CompareTag("Border")))
         {
-            print("fh");
             PlayerPrefs.SetString("allData", "");
             PlayerPrefs.SetInt("points", point);
             Debug.Log("game finished, points = " + point);

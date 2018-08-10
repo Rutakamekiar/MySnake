@@ -12,20 +12,17 @@ public class Score : MonoBehaviour {
     private List<KeyValuePair<string, int>> recList = new List<KeyValuePair<string, int>>();
     private int nowResult;
     public Text score;
-    public Text txt;
+    public Text pointsText;
     public InputField inpName;
 
     private TouchScreenKeyboard keyboard;
     private void Start()
     {
         GetRecordsFromFile();
-        //string[] toDelete = new string[] { "\r\n" };
-        //string readFile1 = PlayerPrefs.GetString("allData");
-        //string[] readFile = readFile1.Split(toDelete, StringSplitOptions.None);
-        //txt.text = MainSnakeMove.point.ToString();
+
         int pts = PlayerPrefs.GetInt("points");
         Debug.Log("now playerpref points = " + pts);
-        txt.text = pts.ToString();
+        pointsText.text = pts.ToString();
         if (MainSnakeMove.point > recList.LastOrDefault().Value)
         {
             inpName.gameObject.SetActive(true);
@@ -56,7 +53,6 @@ public class Score : MonoBehaviour {
     private void GetRecordsFromFile()
     {
         recList = new List<KeyValuePair<string, int>>();
-        //string[] aStr = System.IO.File.ReadAllLines(path);
         string[] toDelete = new string[] { "\r\n" };
         string readFile1 = PlayerPrefs.GetString("records");
         string[] readFile = readFile1.Split(toDelete, StringSplitOptions.None);
@@ -85,8 +81,6 @@ public class Score : MonoBehaviour {
         }
         score.text = ScoreTextForming();
         inpName.gameObject.SetActive(false);
-        //System.IO.File.WriteAllLines(path, recList.Select(n => n.Key + " " + n.Value).ToArray());
-        //System.IO.File.WriteAllText(path, score.text);
         PlayerPrefs.SetString("records", score.text);
         PlayerPrefs.Save();
     }
